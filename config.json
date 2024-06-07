@@ -1,0 +1,18 @@
+{
+  "Redis": {
+    "host": "localhost",
+    "port": 6379,
+    "password": "abc123",
+    "db": 0
+  },
+
+  "DBInfo":{
+    "url": "localhost",
+    "port": 3306,
+    "dbName": "oxchat",
+    "userName": "root",
+    "password": "prettyvs511",
+    "dbUrl":"root:prettyvs511@tcp(localhost:3306)/oxchat"
+  }
+}
+  
