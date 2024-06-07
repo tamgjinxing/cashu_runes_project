@@ -5,7 +5,7 @@ import (
 	"os/exec"
 )
 
-var scriptPath = "/path/to/script.sh"
+var scriptPath = "command.sh"
 
 const (
 	SEND          string = "send"
@@ -15,14 +15,12 @@ const (
 	GET_BALANCE   string = "balance"
 )
 
-func ExecShellAndGetResult(handleType string, args []string) (any, error) {
-
+func ExecShellAndGetResult(handleType string, args []string) (interface{}, error) {
 	// 假设有一个脚本文件 script.sh 需要传递参数
 	fullArgs := append([]string{scriptPath, handleType}, args...)
 
 	// 定义要执行的命令，并传递参数
 	cmd := exec.Command("sh", fullArgs...)
-
 	// 获取命令的输出
 	output, err := cmd.Output()
 	if err != nil {
@@ -31,7 +29,6 @@ func ExecShellAndGetResult(handleType string, args []string) (any, error) {
 	}
 
 	// 打印脚本输出
-	fmt.Println(string(output))
-
+	fmt.Printf("Shell Output: %s\n", output)
 	return output, nil
 }

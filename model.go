@@ -8,7 +8,7 @@ type SendRunesInputDTO struct {
 }
 
 type CreatedWalletInputDTO struct {
-	UserPubKey string `form:"userPubKey" json:"pubkey"`
+	UserPubKey string `form:"pubkey" json:"pubkey"`
 }
 
 type CheckWalletOutputDTO struct {

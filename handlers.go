@@ -29,6 +29,7 @@ func CheckWallet(c *gin.Context) {
 }
 
 func CreatedWallet(c *gin.Context) {
+	fmt.Println("开始创建钱包")
 	var createdWalletDTO CreatedWalletInputDTO
 	if err := c.ShouldBindJSON(&createdWalletDTO); err != nil {
 		c.JSON(http.StatusBadRequest, gin.H{"error": err.Error()})
@@ -37,7 +38,14 @@ func CreatedWallet(c *gin.Context) {
 
 	fmt.Printf("userPublicKey:%s\n", createdWalletDTO.UserPubKey)
 
-	createdResult, err := ExecShellAndGetResult(CREATE_WALLET, []string{createdWalletDTO.UserPubKey})
+	_, err := ExecShellAndGetResult(CREATE_WALLET, []string{createdWalletDTO.UserPubKey})
+
+	if err != nil {
+		RespFail(c.Writer)
+		return
+	}
+
+	addResult, err := SaveUserWallet(createdWalletDTO.UserPubKey, createdWalletDTO.UserPubKey)
 
 	if err != nil {
 		RespFail(c.Writer)
@@ -45,7 +53,7 @@ func CreatedWallet(c *gin.Context) {
 	}
 
 	// 创建响应对象
-	RespSuccess(c.Writer, createdResult)
+	RespSuccess(c.Writer, addResult)
 }
 
 func GetWalletBalance(c *gin.Context) {
@@ -99,9 +107,7 @@ func SendRunes(c *gin.Context) {
 		return
 	}
 
-	fmt.Println(sendRunesInputDTO)
-
-	shellResult, err := ExecShellAndGetResult(SEND, []string{sendRunesInputDTO.ReceiveAddress, fmt.Sprintf("%.2f", sendRunesInputDTO.FeeRate), sendRunesInputDTO.RunesName, fmt.Sprintf("%.2d", sendRunesInputDTO.RunesAmount)})
+	shellResult, err := ExecShellAndGetResult(SEND, []string{sendRunesInputDTO.ReceiveAddress, sendRunesInputDTO.RunesName, fmt.Sprintf("%.2d", sendRunesInputDTO.RunesAmount), fmt.Sprintf("%.2f", sendRunesInputDTO.FeeRate)})
 
 	if err != nil {
 		RespFail(c.Writer)

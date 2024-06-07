@@ -21,11 +21,11 @@ func InitHttpServer() {
 	project := router.Group("/api")
 	{
 		project.GET("/checkWallet", CheckWallet)
-		project.GET("/createdWallet", CreatedWallet)
+		project.POST("/createdWallet", CreatedWallet)
 		project.GET("/getBalance", GetWalletBalance)
 		project.GET("/getAddress", GetReceiveAddress)
 		project.POST("/sendRunes", SendRunes)
-		project.POST("/createdWallet", CreatedWallet)
+		project.GET("/getTransactions", GetTransactions)
 	}
 
 	port := "9901"

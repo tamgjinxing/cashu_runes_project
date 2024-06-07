@@ -10,7 +10,7 @@ func CheckWalletService(pubkey string) (bool, error) {
 }
 
 func SaveUserWallet(pubkey string, walletName string) (bool, error) {
-	sql := "insert into tb_user_wallet_mapping values(?,?)"
+	sql := "insert into tb_user_wallet_mapping(pubkey, wallet_name) values(?,?)"
 
 	params := []interface{}{pubkey, walletName}
 

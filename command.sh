@@ -8,6 +8,7 @@ command=$1
 target_address=$2
 runes_name=$3
 runes_count=$4
+fee_rate=$5
 
 wallet_name=$2
 
@@ -30,7 +31,12 @@ send(){
         echo "Error: The runes count is empty."
         return
     fi
-    fee_rate=10
+
+    if [ -z "$fee_rate" ]; then
+        echo "No fee rate provide.  use default fee rate: 30"
+        fee_rate = 30
+    fi
+    
     main_command="$command_pre $command --fee-rate $fee_rate $target_address $runes_count:$runes_name"
     run
 }
@@ -56,8 +62,8 @@ create(){
 }
 
 run(){
-    # echo $main_command
-    eval $main_command
+    echo $main_command
+    # eval $main_command
 }
 
 
