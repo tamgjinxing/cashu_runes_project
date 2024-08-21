@@ -14,6 +14,8 @@ wallet_name=$2
 
 cd /Users/tangjinxing/work/bitcoin/ord-0.18.5
 
+main_command_pre=""
+
 command_pre="./ord --bitcoin-data-dir $bitcoin_data_dir --cookie-file $bitcoin_cookie_file_path wallet --server-url $server_url"
 
 main_command=""

@@ -6,6 +6,7 @@ import (
 )
 
 var scriptPath = "command.sh"
+var testnetScriptPath = "testnet_command.sh"
 
 const (
 	SEND          string = "send"
@@ -17,7 +18,7 @@ const (
 
 func ExecShellAndGetResult(handleType string, args []string) (interface{}, error) {
 	// 假设有一个脚本文件 script.sh 需要传递参数
-	fullArgs := append([]string{scriptPath, handleType}, args...)
+	fullArgs := append([]string{config.EnvInfo.SctiptName, handleType}, args...)
 
 	// 定义要执行的命令，并传递参数
 	cmd := exec.Command("sh", fullArgs...)

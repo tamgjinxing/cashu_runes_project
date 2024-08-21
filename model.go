@@ -14,3 +14,8 @@ type CreatedWalletInputDTO struct {
 type CheckWalletOutputDTO struct {
 	IsExist bool `json:"isExist"`
 }
+
+type ApiKeyModel struct {
+	CallerId string `json:"callerId"`
+	ApiKey   string `json:"apiKey"`
+}

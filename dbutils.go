@@ -14,6 +14,8 @@ func QueryDataList(sql string, params []interface{}, model interface{}) (interfa
 		return nil, nil
 	}
 
+	fmt.Println(sql)
+
 	rows, err := manager.DB.Query(sql, params...)
 	if err != nil {
 		return nil, err

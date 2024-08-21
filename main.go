@@ -2,6 +2,7 @@ package main
 
 import (
 	"ecash_runes_project/storage"
+	"fmt"
 	"log"
 )
 
@@ -10,12 +11,14 @@ import (
 
 // 	SendRunes()
 // 	ReceiveRunes()
-// }
+// }xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
 
 func main() {
 
 	// 初始化配置文件
 	InitConfig()
+
+	fmt.Println(config.DBInfo.Url)
 
 	//初始化并注册数据库管理器
 	dbManager, err := storage.NewDBManager(config.DBInfo.DBUrl)
@@ -25,6 +28,6 @@ func main() {
 	defer dbManager.Close()
 	storage.Register("DBManager", dbManager)
 
-	// 启动http服务
+	// start  http server
 	InitHttpServer()
 }

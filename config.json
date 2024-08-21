@@ -7,12 +7,17 @@
   },
 
   "DBInfo":{
-    "url": "localhost",
+    "url": "localhost111112223333444555",
     "port": 3306,
     "dbName": "oxchat",
     "userName": "root",
     "password": "prettyvs511",
     "dbUrl":"root:prettyvs511@tcp(localhost:3306)/oxchat"
+  },
+
+  "EnvInfo":{
+    "env":"mainnet",
+    "sctiptName":"command.sh"
   }
 }
   

@@ -121,3 +121,7 @@ func SendRunes(c *gin.Context) {
 func ImportWallet(c *gin.Context) {
 
 }
+
+func CheckStatus(c *gin.Context) {
+	
+}

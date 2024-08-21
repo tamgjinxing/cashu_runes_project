@@ -18,19 +18,21 @@ func InitHttpServer() {
 	// 1.创建路由
 	router := gin.Default()
 
-	project := router.Group("/api")
+	api := router.Group("/api")
+	api.Use(ApiKeyMiddleware())
 	{
-		project.GET("/checkWallet", CheckWallet)
-		project.POST("/createdWallet", CreatedWallet)
-		project.GET("/getBalance", GetWalletBalance)
-		project.GET("/getAddress", GetReceiveAddress)
-		project.POST("/sendRunes", SendRunes)
-		project.GET("/getTransactions", GetTransactions)
+		api.GET("/checkWallet", CheckWallet)
+		api.POST("/createdWallet", CreatedWallet)
+		api.GET("/getBalance", GetWalletBalance)
+		api.GET("/getAddress", GetReceiveAddress)
+		api.POST("/sendRunes", SendRunes)
+		api.GET("/getTransactions", GetTransactions)
 	}
+
+	router.GET("/getApiKey", GetApiKeyHandler)
 
 	port := "9901"
 
-	// 3.监听端口，默认在8080
 	log.Printf("Starting HTTP server at port:%s\n", port)
 	router.Run(":" + port)
 	log.Printf("Started HTTP server at port:%s\n", port)

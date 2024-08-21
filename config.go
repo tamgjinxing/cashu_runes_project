@@ -23,6 +23,11 @@ type Config struct {
 		Password string `json:"password"`
 		DBUrl    string `json:"dbUrl"`
 	} `json:"DBInfo"`
+
+	EnvInfo struct {
+		Env        string `json:"env"`
+		SctiptName string `json:"sctiptName"`
+	} `json:"EnvInfo"`
 }
 
 var config Config // 全局变量用于存储配置信息
